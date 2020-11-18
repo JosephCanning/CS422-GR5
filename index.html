@@ -1,23 +1,50 @@
 <style>
     body {
-        background-image: linear-gradient(#0f64c5, black);
+        background-image: linear-gradient(#0F64C5, #4FC5C9);
     }
     
     .col-lg-3 {
+        background-color: #4B5B5F;
         border: solid 1px;
         margin: 10px;
-        height: 250px;
+        height: 300px;
         min-width: 350px;
         background-color: white;
+        text-align: center;
+    }
+
+    .col-10 {
+        vertical-align: right;
+        border-radius: 10px;
+        background-color: white;
+        height: 30%;
+        width: 60%;
+        font-size: 14px;
+    }
+
+    #post {
+        background-color: #4B5B5F;
+        border-radius: 10px;
+    }
+
+    #post-image {
+        border-radius: 10px;
     }
 
     #first-row {
         padding-top: 50px;
     }
 
+    #inside {
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-bottom: 15px;
+    }
+
     .navbar {
         background: black;
         color: white;
+        height: 50px;
     }
 
     .nav-item {
@@ -30,6 +57,24 @@
 
     #feed {
         font-size: 30px;
+        font-family: Bodoni MT;
+    }
+
+    .row div {
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    #user-icon {
+        padding-bottom: 25px;
+        color: black;
+    }
+
+    #comment-icon {
+        color: white;
     }
 
 </style>
@@ -48,7 +93,7 @@
         </ul>
         <ul class="navbar-nav center-block">
             <li class="nav-item" id="feed">
-                <a class="nav-text">Feed</a>
+                <a class="nav-text">Home</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -72,26 +117,103 @@
     
     <div class="container">
       <div class="row" id="first-row">
-        <div class="col-lg-3" id="first-cell">
-        1
+        <div class="col-lg-3" id="post">
+            <a href="/">
+                <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+            </a>
+            
+            <div class="row" id="inside">
+                <div class = "col-2">
+                    <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+                </div>
+                
+                <div class = "col-10 text-left">
+                    Do the melting clocks reflect enough light?
+                </div>
+                </div>
+            </div>
+        <div class="col-lg-3" id="post">
+            <a href="/">
+                <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+            </a>
+            
+            <div class="row" id="inside">
+                <div class = "col-2">
+                    <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+                </div>
+                
+                <div class = "col-10 text-left">
+                    Do the hands look okay?
+                </div>
+                </div>
+            </div>
+        <div class="col-lg-3" id="post">
+        <a href="/">
+            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+        </a>
+        
+        <div class="row" id="inside">
+            <div class = "col-2">
+                <i class="fas fa-palette fa-lg" id="user-icon">&nbsp;</i>
+                <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+            </div>
+            
+            <div class = "col-10 text-left">
+                Should I add more colors?
+            </div>
+            </div>
         </div>
-        <div class="col-lg-3" id="second-cell">
-        2
-        </div>
-        <div class="col-lg-3" id="third-cell">
-        3
-        </div>
-      </div>
-      
       <div class="row" id="second-row">
-        <div class="col-lg-3" id="fourth-cell">
-        4
+        <div class="col-lg-3" id="post">
+        <a href="/">
+            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+        </a>
+        
+        <div class="row" id="inside">
+            <div class = "col-2">
+                <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+            </div>
+            
+            <div class = "col-10 text-left">
+                Is this too plain looking?
+            </div>
+            </div>
         </div>
-        <div class="col-lg-3" id="fifth-cell">
-        5
+        <div class="col-lg-3" id="post">
+        <a href="/">
+            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+        </a>
+        
+        <div class="row" id="inside">
+            <div class = "col-2">
+                <i class="fas fa-palette fa-lg" id="user-icon">&nbsp;</i>
+                <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+            </div>
+            
+            <div class = "col-10 text-left">
+                Too realistic?
+            </div>
+            </div>
         </div>
-        <div class="col-lg-3" id="sixth-cell">
-        6
+        <div class="col-lg-3" id="post">
+        <a href="/">
+            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+        </a>
+        
+        
+        <div class="row" id="inside">
+            <div class = "col-2">
+                <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
+            </div>
+            
+            <div class = "col-10 text-left">
+                Too abstract?
+            </div>
+            </div>
         </div>
       </div>
       </div>

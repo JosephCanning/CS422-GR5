@@ -2,65 +2,76 @@
 
 <style>
 
-    .column {
-        float: left;
-        margin-top: 5%;
-    }
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
     body {
-        background-image: linear-gradient(blue, lightblue);
+        background-image: linear-gradient(#0f64c5, #4fc5c9);
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: white;
     }
 
 </style>
 
-<html>
+<html style = "width: 100%; height: 100%;">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
     <body>
+        <div class = "row" id = "navBar" style = "background-color: black; box-shadow: 1px 1px 2px black; font-family: 'Bodoni MT'; text-align: center; font-size: 180%; color: white;">
+            <div class = "col"></div>
+            <div class = "col-6">Editing Portfolio</div>
+            <div class = "col"></div>
+        </div>
 
-        <div class = "row" id = "editPicRow">
-            <div class = "column" id = "editPic" style = "margin-left: 50%; width: 128px; height: 128px; background-color: black;">
-                [Insert Picture Here]
+        <div class = "container-fluid">
+            <div class = "row" id = "editPicRow" style = "margin-top: 5%;">
+                <div class = "col"></div>
+                <div class = "col-1" id = "editPic" style = "width: 128px; height: 128px; background-color: black; box-shadow: 1px 1px 2px black;">
+                    [Insert Picture Here]
+                </div>
+                <div class = "col"></div>
             </div>
-        </div>
-
-        <div class = "row" id = "userName" style = "margin-left: 50%; margin-top: 1%;">@username</div>
-        
-        <div class = "row">
-            <h3 style = "margin-left: 20%; margin-top: 5%;">Artist Type</h3>
-        </div>
-
-        <div class = "row" id = "typeSelection">
-            <input type = "radio" id = "Hobbyist" name = "type" value = "Hobbyist" style = "margin-left: 20%;">
-            <label for = "Hobbyist">Hobbyist</label>
-
-            <input type = "radio" id = "Student" name = "type" value = "Student" style = "margin-left: 10%;">
-            <label for = "Student">Student</label>
-
-            <input type = "radio" id = "Professional" name = "type" value = "Professional" style = "margin-left: 10%;">
-            <label for = "Professional">Professional</label>
+    
+            <div class = "row" id = "userName" style = "margin-left: 50%; margin-top: 1%;">
+                <div class = "col"></div>
+                <div class = "col" style = "color: white; text-align: center;">
+                    @username
+                </div>
+                <div class = "col"></div>
+            </div>
             
-            <input type = "radio" id = "Anonymous" name = "type" value = "Anonymous" style = "margin-left: 10%;">
-            <label for = "Anonymous">Anonymous</label>
-        </div>
-
-        <div class = "row">
-            <h3 style = "margin-left: 20%; margin-top: 5%;">Bio</h3>
-        </div>
-
-        <div class = "row" id = "bioField">
-            <input type = "text" size = "300" id = "Bio" name = "bio" style = "margin-left: 20%; width: 60%; height: 40%;">
-        </div>
-
-        <div class = "row" id = "changeBtnHeader">
-            <button onclick = "window.location.href = 'profile.html';" id = "cancelBtn" style = "width: 10%; margin-left: 20%; margin-top: 8%; margin-bottom: 2%; color: white; background-color: red;">Cancel</button>
-            <button onclick = "window.location.href = 'profile.html';" id = "saveBtn" style = "width: 10%; margin-left: 40%; margin-top: 8%; margin-bottom: 2%; color: white; background-color: green;">Save Changes</button>
+            <div class = "row">
+                <h3 style = "margin-left: 20%; margin-top: 5%; color: white;"><b>Artist Type</b></h3>
+            </div>
+    
+            <div class = "row" id = "typeSelection" style = "margin-left: 20%; margin-top: 1%;">
+                <div class = "col">
+                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;">Hobbyist</button>
+                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;">Student</button>
+                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;">Professional</button>
+                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;">Anonymous</button>
+                </div>
+            </div>
+    
+            <div class = "row">
+                <h3 style = "margin-left: 20%; margin-top: 5%; color: white;"><b>Bio</b></h3>
+            </div>
+    
+            <div class = "row" id = "bioField">
+                <input type = "text" size = "300" id = "Bio" name = "bio" style = "margin-left: 20%; width: 60%; height: 40%;">
+            </div>
+    
+            <div class = "row" id = "changeBtnHeader">
+                <div class = "col" style = "text-align: center;">
+                    <button onclick = "window.location.href = 'profile.html';" id = "cancelBtn" style = "width: 20%;; margin-top: 8%; margin-bottom: 2%; color: white; background-color: red; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
+                        Cancel
+                    </button>
+                </div>
+                <div class = "col" style = "text-align: center;">
+                    <button onclick = "window.location.href = 'profile.html';" id = "saveBtn" style = "width: 20%; margin-top: 8%; margin-bottom: 2%; color: white; background-color: green; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
         </div>
 
     </body>

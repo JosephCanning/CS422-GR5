@@ -29,8 +29,8 @@ $(document).ready(function()
         document.getElementById("userBio").innerHTML = localStorage.userBio;
     }
     else {
-        localStorage.userBio = "Biography not given.";
-        document.getElementById("userBio").innerHTML = "Biography not given.";
+        localStorage.userBio = "";
+        document.getElementById("userBio").innerHTML = "[Biography not given.]";
     }
 });
 
@@ -132,10 +132,10 @@ $(document).ready(function()
                     <a class="nav-link" href="index.html"><i class="fas fa-home fa-2x"></i></a>
                 </li>
                 <li class="nav-item" id="upload">
-                    <a class="nav-link" href="upload"><i class="fas fa-file-upload fa-2x"></i></a>
+                    <a class="nav-link" href="upload.html"><i class="fas fa-file-upload fa-2x"></i></a>
                 </li>
                 <li class="nav-item" id="profile">
-                    <a class="nav-link" href="profile"><i class="fas fa-user-circle fa-2x"></i></a>
+                    <a class="nav-link" href="profile.html"><i class="fas fa-user-circle fa-2x"></i></a>
                 </li>
                 <li class="nav-item" id="notifications">
                     <a class="nav-link" href="notifications"><i class="fas fa-bell fa-2x"></i></a>

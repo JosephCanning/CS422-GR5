@@ -19,6 +19,7 @@
 
             .navbar {
                 background-color: black;
+                height: 5%;
             }
 
             .nav-link {
@@ -33,11 +34,29 @@
                 color: white;
             }
 
+            .container-fluid {
+                width: 100%;
+                height: 95%;
+            }
+
+            .row {
+                width: 100%;
+                height: 50%;
+            }
+
             #feed {
-                font-size: 30px;
+                font-size: 28pt;
                 color: white;
                 font-family: Bodoni MT;
             }
+
+            #leftCol {
+                color: white;
+                height: 100%;
+                background-color: rgba(0,0,0,.5);
+                overflow-y: scroll;
+            }
+
         </style>
     </head>
 
@@ -72,8 +91,40 @@
             </ul>
         </nav>
         
-        <div class="container">
-            
+        <div class="container-fluid">
+            <div class="row" style="height:100%;">
+                <div class="col-sm-3" id="leftCol">
+                    <div class="row" id="mainRow">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <img src="art1.jpg" class="mx-auto d-block img-thumbnail" alt="art1" style="width: 96%; height: 54%;" /> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <img src="art2.jpg" class="mx-auto d-block img-thumbnail" alt="art2" style="width: 96%; height: 54%;" /> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <img src="art3.jpg" class="mx-auto d-block img-thumbnail" alt="art3" style="width: 96%; height: 54%;" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9" id="rightCol">
+                    <div class="row d-flex align-items-center justify-content-center" style="width:100%;height:90%;">
+                        <img src="art4.jpg" class="mx-auto d-block img-rounded" alt="art4" style="width: 80%; height: 55%; border-style: solid;" />
+                    </div>
+                    <div class="row" style="width:100%;height:10%;">
+                        <div class="col">
+                            <button type="button" class="btn btn-success float-left" style="width:120px;height:75%;">Success</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger float-right" style="width:120px;height:75%;">Danger</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </body>
 </html>

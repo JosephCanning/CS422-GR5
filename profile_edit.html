@@ -1,5 +1,128 @@
 <!DOCTYPE html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+var savedUserType;
+var savedBio;
+
+var initialUserType;
+var initialBio;
+
+$(document).ready(function()
+{
+    if (localStorage.userType) {
+        if (localStorage.userType == "Hobbyist") {
+            document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf53f;</li> @username";
+            document.getElementById("hobbyistBtn").style.backgroundColor = "black";
+            savedUserType = "Hobbyist";
+        }
+        else if (localStorage.userType == "Student") {
+            document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf19d;</li> @username";
+            document.getElementById("studentBtn").style.backgroundColor = "black";
+            savedUserType = "Student";
+        }
+        else if (localStorage.userType == "Professional") {
+            document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf508;</li> @username";
+            document.getElementById("professionalBtn").style.backgroundColor = "black";
+            savedUserType = "Professional";
+        }
+        else {
+            document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf6fa;</li> @username";
+            document.getElementById("anonymousBtn").style.backgroundColor = "black";
+            savedUserType = "Anonymous";
+        }
+    }
+    else {
+        localStorage.userType = "Anonymous";
+        document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf6fa;</li> @username";
+        document.getElementById("anonymousBtn").style.backgroundColor = "black";
+        savedUserType = "Anonymous";
+    }
+
+    if (localStorage.userBio) {
+        document.getElementById("bioTextField").value = localStorage.userBio;
+    }
+    else {
+        localStorage.userBio = "Biography not given.";
+        document.getElementById("bioTextField").value = "Biography not given.";
+    }
+
+    initialUserType = localStorage.userType;
+    initialBio = localStorage.userBio;
+});
+
+$(document).on('click', "#hobbyistBtn", function(evt)
+{
+    document.getElementById("hobbyistBtn").style.backgroundColor = "black";
+    document.getElementById("studentBtn").style.backgroundColor = "indigo";
+    document.getElementById("professionalBtn").style.backgroundColor = "indigo";
+    document.getElementById("anonymousBtn").style.backgroundColor = "indigo";
+
+    document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf53f;</li> @username";
+    savedUserType = "Hobbyist";
+});
+
+$(document).on('click', "#studentBtn", function(evt)
+{
+    document.getElementById("hobbyistBtn").style.backgroundColor = "indigo";
+    document.getElementById("studentBtn").style.backgroundColor = "black";
+    document.getElementById("professionalBtn").style.backgroundColor = "indigo";
+    document.getElementById("anonymousBtn").style.backgroundColor = "indigo";
+
+    document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf19d;</li> @username";
+    savedUserType = "Student";
+});
+
+$(document).on('click', "#professionalBtn", function(evt)
+{
+    document.getElementById("hobbyistBtn").style.backgroundColor = "indigo";
+    document.getElementById("studentBtn").style.backgroundColor = "indigo";
+    document.getElementById("professionalBtn").style.backgroundColor = "black";
+    document.getElementById("anonymousBtn").style.backgroundColor = "indigo";
+
+    document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf508;</li> @username";
+    savedUserType = "Professional";
+});
+
+$(document).on('click', "#anonymousBtn", function(evt)
+{
+    document.getElementById("hobbyistBtn").style.backgroundColor = "indigo";
+    document.getElementById("studentBtn").style.backgroundColor = "indigo";
+    document.getElementById("professionalBtn").style.backgroundColor = "indigo";
+    document.getElementById("anonymousBtn").style.backgroundColor = "black";
+
+    document.getElementById("userNameColumn").innerHTML = "<li class='fa'>&#xf6fa;</li> @username";
+    savedUserType = "Anonymous";
+});
+
+$(document).on('click', "#saveBtn", function(evt)
+{
+    savedBio = document.getElementById("bioTextField").value;
+    if (savedUserType !== initialUserType || savedBio !== initialBio) {
+        localStorage.userBio = savedBio;
+        localStorage.userType = savedUserType;
+    }
+
+    window.location.href = 'profile.html';
+});
+
+$(document).on('click', "#cancelBtn", function(evt)
+{
+    savedBio = document.getElementById("bioTextField").value;
+
+    if (savedUserType !== initialUserType || savedBio !== initialBio) {
+        if (confirm("You're about to discard unsaved changes!\nAre you sure you want to leave this page?")) {
+            window.location.href = 'profile.html';
+        }
+    }
+    else {
+        window.location.href = 'profile.html';
+    }
+});
+
+</script>
+
 <style>
 
     body {
@@ -46,7 +169,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" id="home">
-                    <a class="nav-link" href="home"><i class="fas fa-home fa-2x"></i></a>
+                    <a class="nav-link" href="index.html"><i class="fas fa-home fa-2x"></i></a>
                 </li>
                 <li class="nav-item" id="upload">
                     <a class="nav-link" href="upload"><i class="fas fa-file-upload fa-2x"></i></a>
@@ -73,7 +196,7 @@
             </div>
     
             <div class = "row" id = "userName" style = "margin-top: 1%;">
-                <div class = "col" style = "color: white; text-align: center;">
+                <div class = "col" id = "userNameColumn" style = "color: white; text-align: center;">
                     <i class="fas fa-mask"></i> @username
                 </div>
             </div>
@@ -84,10 +207,10 @@
     
             <div class = "row" id = "typeSelection" style = "margin-left: 20%; margin-top: 1%;">
                 <div class = "col">
-                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-palette"></i> Hobbyist</button>
-                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-graduation-cap"></i> Student</button>
-                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-user-tie"></i> Professional</button>
-                    <button style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-mask"></i> Anonymous</button>
+                    <button id = "hobbyistBtn" style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-palette"></i> Hobbyist</button>
+                    <button id = "studentBtn" style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-graduation-cap"></i> Student</button>
+                    <button id = "professionalBtn" style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-user-tie"></i> Professional</button>
+                    <button id = "anonymousBtn" style = "width: 18%; padding: 10px; background-color:indigo; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-radius: 10px; box-shadow: 1px 1px 2px black;"><i class="fas fa-mask"></i> Anonymous</button>
                 </div>
             </div>
     
@@ -95,18 +218,18 @@
                 <h3 style = "margin-left: 20%; margin-top: 5%; color: white;"><b>Bio</b></h3>
             </div>
     
-            <div class = "row" id = "bioField">
-                <input type = "text" size = "300" id = "Bio" name = "bio" style = "margin-left: 20%; width: 60%; height: 40%;">
+            <div class = "row" id = "bioFieldRow">
+                <input type = "text" id = "bioTextField" size = "300" id = "Bio" name = "bio" style = "margin-left: 20%; width: 60%; height: auto;">
             </div>
     
             <div class = "row" id = "changeBtnHeader">
                 <div class = "col" style = "text-align: center;">
-                    <button onclick = "window.location.href = 'profile.html';" id = "cancelBtn" style = "width: 20%;; margin-top: 8%; margin-bottom: 2%; color: white; background-color: red; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
+                    <button id = "cancelBtn" style = "width: 20%;; margin-top: 8%; margin-bottom: 2%; color: white; background-color: red; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
                         <i class="fas fa-window-close"></i> Cancel
                     </button>
                 </div>
                 <div class = "col" style = "text-align: center;">
-                    <button onclick = "window.location.href = 'profile.html';" id = "saveBtn" style = "width: 20%; margin-top: 8%; margin-bottom: 2%; color: white; background-color: green; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
+                    <button id = "saveBtn" style = "width: 20%; margin-top: 8%; margin-bottom: 2%; color: white; background-color: green; border-radius: 10px; padding: 5px; box-shadow: 1px 1px 2px black;">
                         <i class="fas fa-save"></i> Save Changes
                     </button>
                 </div>

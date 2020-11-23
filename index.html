@@ -7,7 +7,7 @@
         background-color: #4B5B5F;
         border: solid 1px;
         margin: 10px;
-        height: 300px;
+        height: 350px;
         min-width: 350px;
         background-color: white;
         text-align: center;
@@ -17,9 +17,15 @@
         vertical-align: right;
         border-radius: 10px;
         background-color: white;
-        height: 30%;
-        width: 60%;
+
         font-size: 14px;
+    }
+
+    img {
+        max-width: 400;
+        max-height: 225;
+        width: 400;
+        height: 225;
     }
 
     #post {
@@ -51,11 +57,26 @@
         margin: 5px;
     }
 
+    .dropdown {
+        background-color: black;
+        height: 50px;
+        width: 50px;
+    }
+
+    .dropdown-menu.show {
+        margin-left: -100px;
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+    }
+
     .fas {
         color: white;
     }
 
     #feed {
+        padding-left: 225px;
         font-size: 30px;
         font-family: Bodoni MT;
     }
@@ -82,6 +103,9 @@
 
 <!DOCTYPE html>
 <html>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <body>
@@ -106,8 +130,11 @@
             <li class="nav-item" id="profile">
                 <a class="nav-link" href="profile"><i class="fas fa-user-circle fa-2x"></i></a>
             </li>
-            <li class="nav-item" id="notifications">
-                <a class="nav-link" href="notifications"><i class="fas fa-bell fa-2x"></i></a>
+            <li class="nav-item dropdown" id="notifications">
+                <a class="nav-link" href="notifications" id="navDropdown" data-toggle="dropdown"><i class="fas fa-bell fa-2x"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-text" href"#">No Notifications</a>
+                </div>
             </li>
             <li class="nav-item" id="options">
                 <a class="nav-link" href="options"><i class="fas fa-ellipsis-v fa-2x"></i></a>
@@ -119,44 +146,55 @@
       <div class="row" id="first-row">
         <div class="col-lg-3" id="post">
             <a href="/">
-                <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+                <img src="art1.jpg" class="img-fluid" id="post-image">
             </a>
-
             <div class="row" id="inside">
                 <div class = "col-2">
-                    <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                    <span class="fa-stack" style="vertical-align: top;">
+                        <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                        <i class="fas fa-graduation-cap fa-stack-1x" id="user-icon">&nbsp;</i>
+                    </span>
+                    <br>
+                    <br>
                     <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
                 </div>
 
                 <div class = "col-10 text-left">
-                    Do the melting clocks reflect enough light?
+                    Are there enough stars?
                 </div>
                 </div>
             </div>
         <div class="col-lg-3" id="post">
             <a href="/">
-                <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
-            </a>
-
-            <div class="row" id="inside">
+                <img src="art2.jpg" class="img-fluid" id="post-image">
+            </a>            <div class="row" id="inside">
                 <div class = "col-2">
-                    <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                    <span class="fa-stack" style="vertical-align: top;">
+                        <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                        <i class="fas fa-graduation-cap fa-stack-1x" id="user-icon">&nbsp;</i>
+                    </span>
+                    <br>
+                    <br>
                     <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
                 </div>
 
                 <div class = "col-10 text-left">
-                    Do the hands look okay?
+                    Do the leaves look okay?
                 </div>
                 </div>
             </div>
         <div class="col-lg-3" id="post">
-        <a href="/">
-            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
-        </a>
-
-        <div class="row" id="inside">
+            <a href="/">
+                <img src="art3.jpg" class="img-fluid" id="post-image">
+            </a>
+            <div class="row" id="inside">
             <div class = "col-2">
-                <i class="fas fa-palette fa-lg" id="user-icon">&nbsp;</i>
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-palette fa-stack-1x" id="user-icon">&nbsp;&nbsp;</i>
+                </span>
+                <br>
+                <br>
                 <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
             </div>
 
@@ -167,13 +205,17 @@
         </div>
       <div class="row" id="second-row">
         <div class="col-lg-3" id="post">
-        <a href="/">
-            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
-        </a>
-
-        <div class="row" id="inside">
+            <a href="/">
+                <img src="art4.jpg" class="img-fluid" id="post-image">
+            </a>
+            <div class="row" id="inside">
             <div class = "col-2">
-                <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-graduation-cap fa-stack-1x" id="user-icon">&nbsp;</i>
+                </span>
+                <br>
+                <br>
                 <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
             </div>
 
@@ -184,29 +226,37 @@
         </div>
         <div class="col-lg-3" id="post">
         <a href="/">
-            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+            <img src="art5.jpg" class="img-fluid" id="post-image">
         </a>
-
         <div class="row" id="inside">
             <div class = "col-2">
-                <i class="fas fa-palette fa-lg" id="user-icon">&nbsp;</i>
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-palette fa-stack-1x" id="user-icon">&nbsp;&nbsp;</i>
+                </span>
+                <br>
+                <br>
                 <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
             </div>
 
             <div class = "col-10 text-left">
-                Too realistic?
+                Is this too scary?
             </div>
             </div>
         </div>
         <div class="col-lg-3" id="post">
         <a href="/">
-            <img src="http://placehold.it/400x225" class="img-fluid" id="post-image">
+            <img src="art6.jpg" class="img-fluid" id="post-image">
         </a>
-
-
-        <div class="row" id="inside">
+            <div class="row" id="inside">
             <div class = "col-2">
-                <i class="fas fa-graduation-cap fa-lg" id="user-icon">&nbsp;</i>
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="fas fa-circle fa-stack-2x" style="color: white" id="user-icon">&nbsp;</i>
+                    <i class="fas fa-graduation-cap fa-stack-1x" id="user-icon">&nbsp;</i>
+                </span>
+                <br>
+                <br>
+                
                 <i class="fas fa-comment-dots fa-lg" id="comment-icon">6</i>
             </div>
 

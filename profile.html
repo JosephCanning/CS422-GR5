@@ -34,6 +34,90 @@ $(document).ready(function()
     }
 });
 
+$(document).on('mouseover', "#editProfileBtn", function(evt)
+{
+    document.getElementById("editProfileBtn").style.backgroundColor = "darkorange";
+    document.getElementById("editProfileBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#editProfileBtn", function(evt)
+{
+    document.getElementById("editProfileBtn").style.backgroundColor = "orange";
+    document.getElementById("editProfileBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#searchBtn", function(evt)
+{
+    document.getElementById("searchBtn").style.color = "gold";
+    document.getElementById("searchBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#searchBtn", function(evt)
+{
+    document.getElementById("searchBtn").style.color = "white";
+    document.getElementById("searchBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#homeBtn", function(evt)
+{
+    document.getElementById("homeBtn").style.color = "gold";
+    document.getElementById("homeBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#homeBtn", function(evt)
+{
+    document.getElementById("homeBtn").style.color = "white";
+    document.getElementById("homeBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#uploadBtn", function(evt)
+{
+    document.getElementById("uploadBtn").style.color = "gold";
+    document.getElementById("uploadBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#uploadBtn", function(evt)
+{
+    document.getElementById("uploadBtn").style.color = "white";
+    document.getElementById("uploadBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#profileBtn", function(evt)
+{
+    document.getElementById("profileBtn").style.color = "gold";
+    document.getElementById("profileBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#profileBtn", function(evt)
+{
+    document.getElementById("profileBtn").style.color = "white";
+    document.getElementById("profileBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#notificationsBtn", function(evt)
+{
+    document.getElementById("notificationsBtn").style.color = "gold";
+    document.getElementById("notificationsBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#notificationsBtn", function(evt)
+{
+    document.getElementById("notificationsBtn").style.color = "white";
+    document.getElementById("notificationsBtn").style.cursor = "default";
+});
+
+$(document).on('mouseover', "#optionsBtn", function(evt)
+{
+    document.getElementById("optionsBtn").style.color = "gold";
+    document.getElementById("optionsBtn").style.cursor = "pointer";
+});
+
+$(document).on('mouseout', "#optionsBtn", function(evt)
+{
+    document.getElementById("optionsBtn").style.color = "white";
+    document.getElementById("optionsBtn").style.cursor = "default";
+});
+
 </script>
 
 <style>
@@ -51,6 +135,38 @@ $(document).ready(function()
         background-image: linear-gradient(#0f64c5, #4fc5c9);
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: white;
+    }
+
+    button {
+        transition: background-color 0.15s;
+    }
+
+    #searchBtn {
+        transition: color 0.15s;
+    }
+
+    #homeBtn {
+        transition: color 0.15s;
+    }
+
+    #uploadBtn {
+        transition: color 0.15s;
+    }
+
+    #profileBtn {
+        transition: color 0.15s;
+    }
+
+    #notificationsBtn {
+        transition: color 0.15s;
+    }
+
+    #optionsBtn {
+        transition: color 0.15s;
+    }
+
+    #post-image {
+        transition: size 0.15s;
     }
 
     .navbar {
@@ -119,7 +235,7 @@ $(document).ready(function()
         <nav class="navbar navbar-toggleable-xl bg-dark navbar-dark">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" id="search">
-                    <a class="active" href="#"><i class="fas fa-search fa-2x"></i></a>
+                    <a class="active" href="#"><i class="fas fa-search fa-2x" id = "searchBtn"></i></a>
                 </li>
             </ul>
             <ul class="navbar-nav center-block">
@@ -129,19 +245,19 @@ $(document).ready(function()
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" id="home">
-                    <a class="nav-link" href="index.html"><i class="fas fa-home fa-2x"></i></a>
+                    <a class="nav-link" href="index.html"><i class="fas fa-home fa-2x" id = "homeBtn"></i></a>
                 </li>
                 <li class="nav-item" id="upload">
-                    <a class="nav-link" href="upload.html"><i class="fas fa-file-upload fa-2x"></i></a>
+                    <a class="nav-link" href="upload.html"><i class="fas fa-file-upload fa-2x" id = "uploadBtn"></i></a>
                 </li>
                 <li class="nav-item" id="profile">
-                    <a class="nav-link" href="profile.html"><i class="fas fa-user-circle fa-2x"></i></a>
+                    <a class="nav-link" href="profile.html"><i class="fas fa-user-circle fa-2x" id = "profileBtn"></i></a>
                 </li>
                 <li class="nav-item" id="notifications">
-                    <a class="nav-link" href="notifications"><i class="fas fa-bell fa-2x"></i></a>
+                    <a class="nav-link" href="notifications"><i class="fas fa-bell fa-2x" id = "notificationsBtn"></i></a>
                 </li>
                 <li class="nav-item" id="options">
-                    <a class="nav-link" href="options"><i class="fas fa-ellipsis-v fa-2x"></i></a>
+                    <a class="nav-link" href="options"><i class="fas fa-ellipsis-v fa-2x" id = "optionsBtn"></i></a>
                 </li>
             </ul>
         </nav>

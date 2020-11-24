@@ -115,7 +115,6 @@
     }
 
     .scrollable{
-      //background-color: blue;
       height: 465px;
       overflow-y: auto;
     }
@@ -133,6 +132,10 @@
       margin-top: -30px;
     }
 
+    .reply-buttons{
+      margin-top: -15px;
+    }
+
     .cmmt-button{
       padding: 0px 10px;
       background-color: grey;
@@ -142,19 +145,14 @@
 
     .reply{
       margin-left: 35px;
+
     }
 
-    .modal-content{
-
-      position: absolute;
-      width: 500px;
-      float:
-    }
 
 </style>
 
 <script>
-  var count = 0;
+  var count = 1;
 </script>
 
 <!DOCTYPE html>
@@ -234,7 +232,14 @@
         <div class="col-lg-5 col-sec comments p-1" id="post">
           <div class="row" >
             <div class="col scrollable" id="comment-section">
+              <div class="" id="d0">
+                <p class = "comment">I think the color choice is perfect!</p>
+                <div class="comment-buttons">
+                  <button type="button" name="replyBttn" class ="cmmt-button btn btn-sm btn-success" onclick="addReply()">Reply</button>
+                  <button type="button" name="reportBttn" class ="cmmt-button btn btn-sm btn-danger">Report</button>
+                </div>
 
+              </div>
             </div>
           </div>
           <div class="row align-item-end">
@@ -290,6 +295,90 @@
                 count++;
               }
 
+              function addReply(){
+                var dOverall = document.createElement("div");
+                dOverall.setAttribute("id", "d" + count.toString());
+                dOverall.setAttribute("class", "reply");
+
+                var dButtons = document.createElement("div");
+                dButtons.setAttribute("class", "reply-buttons");
+
+                var t = document.createElement("input");
+                t.className = "comment reply-field";
+                t.id = "t" + count.toString();
+
+
+
+                var b1 = document.createElement("button");
+                b1.innerHTML = "Cancel";
+
+                var b2 = document.createElement("button");
+                b2.innerHTML = "Post";
+
+                b1.setAttribute("class", "cmmt-button btn btn-sm btn-warning");
+                b2.setAttribute("class", "cmmt-button btn btn-sm btn-success");
+
+                b1.setAttribute("onclick", "deleteComment(d" + count.toString() + ")");
+                b2.setAttribute("onclick", "replaceTextField(t" + count.toString() + ",d" + count.toString() + "," + count.toString() + ")");
+
+                dButtons.appendChild(b1);
+                dButtons.appendChild(b2);
+
+                dOverall.appendChild(t);
+                dOverall.appendChild(dButtons);
+
+                t.addEventListener("keyup", function(event){
+                  if(event.keyCode === 13){
+                    event.preventDefault();
+                    b2.click();
+                  }
+                });
+
+                document.getElementById("comment-section").appendChild(dOverall);
+              }
+
+              function replaceTextField(t, d, num){
+                var p = document.createElement("p");
+                p.innerHTML = t.value;
+                p.id = "p" + num.toString();
+                p.className = "comment";
+
+                if(p.innerHTML === ""){
+                  return;
+                }
+
+                d.remove();
+
+                var dOverall = document.createElement("div");
+                dOverall.setAttribute("id", "d" + count.toString());
+                dOverall.setAttribute("class", "reply");
+
+                var dButtons = document.createElement("div");
+                dButtons.setAttribute("class", "comment-buttons");
+
+                var b1 = document.createElement("button");
+                var b3 = document.createElement("button");
+
+                b1.innerHTML = "Edit";
+                b3.innerHTML = "Delete";
+
+                b1.setAttribute("class", "cmmt-button btn btn-sm btn-warning");
+                b3.setAttribute("class", "cmmt-button btn btn-sm btn-danger");
+
+                dButtons.appendChild(b1);
+                dButtons.appendChild(b3);
+
+                dOverall.appendChild(p);
+                dOverall.appendChild(dButtons)
+
+                b3.setAttribute("onclick", "deleteComment(d" + count.toString() + ")");
+
+                document.getElementById("d0").appendChild(dOverall);
+
+                count++;
+
+              }
+
               function deleteComment(d){
                 if(confirm("Are you sure you want to delete your comment?")){
                   d.remove();
@@ -300,6 +389,7 @@
 
               var input = document.getElementById("make-comment");
 
+
               input.addEventListener("keyup", function(event){
                 if(event.keyCode === 13){
                   event.preventDefault();
@@ -307,13 +397,12 @@
                 }
               });
             </script>
+
+
           </div>
+
         </div>
       </div>
-
     </div>
-
-
-
 </body>
 </html>

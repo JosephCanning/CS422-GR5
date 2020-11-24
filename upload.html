@@ -207,7 +207,6 @@
             let savedTags = '';
             let savedOpt = '';
             let hasAdded = false;
-            let goingBack = false;
 
             let changeState = num => {
 
@@ -221,11 +220,7 @@
                     }
                     $('#removeBtn').prop('disabled', true);
                 } else if (num === 1) {
-                    if (goingBack) {
-                        console.log('back');
-                        savedState0 = $('#pageContainer').html();
-                        goingBack = false;
-                    }
+                    savedState0 = $('#pageContainer').html();
                     $('#pageContainer').html(savedState1);
                     $('#shortRequest').text(savedInShort);
                     $('#longRequest').text(savedInLong);
@@ -246,13 +241,14 @@
                     $('#nextBtn').html('Post');
                     // $('#typeSelect').text(savedType);
                     $('#typeSelect').val(savedType);
+                    $('.selectpicker').selectpicker('refresh');
                     $('#tagsBox').text(savedTags);
+                    $('#leftCol').html(leftColContents);
                     if (savedOpt === 'public') {
                         $('#radioPublic').prop('checked', true);
                     } else if (savedOpt === 'private') {
                         $('#radioPrivate').prop('checked', true);
                     }
-                    $('#leftCol').html(leftColContents);
                 }
 
             }
@@ -296,21 +292,10 @@
 
             $(document).on('click', '#removeBtn', e => {
                 if (state === 1) {
-                    console.log('change1');
+                    console.log('saving input');
                     savedInShort = $('#shortRequest').val();
                     savedInLong = $('#longRequest').val();
                     state = 0;
-                    changeState(state);
-                    return;
-                }
-
-                if (state === 2) {
-                    console.log('change2');
-                    savedType = $('#typeSelect').val();
-                    savedTags = $('#tagsBox').val();
-                    hasAdded = true;
-                    goingBack = true;
-                    state = 1;
                     changeState(state);
                     return;
                 }
@@ -331,12 +316,10 @@
                 } else if (state === 1) {
                     savedInShort = $('#shortRequest').val();
                     savedInLong = $('#longRequest').val();
-                    console.log(leftColContents);
-                    leftColContents = $('#leftCol').html();
-                    console.log(leftColContents);
                     if (savedInShort === '' || savedInLong === '') {
                         alert('Please enter some text telling other artists what sort of feedback you would like on your image.');
                     } else {
+                        leftColContents = $('#leftCol').html();
                         state = 2;
                     }
                 } else if (state === 2) {

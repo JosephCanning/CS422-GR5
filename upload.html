@@ -207,6 +207,7 @@
             let savedTags = '';
             let savedOpt = '';
             let hasAdded = false;
+            let goingBack = false;
 
             let changeState = num => {
 
@@ -220,7 +221,11 @@
                     }
                     $('#removeBtn').prop('disabled', true);
                 } else if (num === 1) {
-                    savedState0 = $('#pageContainer').html();
+                    if (goingBack) {
+                        console.log('back');
+                        savedState0 = $('#pageContainer').html();
+                        goingBack = false;
+                    }
                     $('#pageContainer').html(savedState1);
                     $('#shortRequest').text(savedInShort);
                     $('#longRequest').text(savedInLong);
@@ -291,10 +296,21 @@
 
             $(document).on('click', '#removeBtn', e => {
                 if (state === 1) {
-                    console.log('saving input');
+                    console.log('change1');
                     savedInShort = $('#shortRequest').val();
                     savedInLong = $('#longRequest').val();
                     state = 0;
+                    changeState(state);
+                    return;
+                }
+
+                if (state === 2) {
+                    console.log('change2');
+                    savedType = $('#typeSelect').val();
+                    savedTags = $('#tagsBox').val();
+                    hasAdded = true;
+                    goingBack = true;
+                    state = 1;
                     changeState(state);
                     return;
                 }

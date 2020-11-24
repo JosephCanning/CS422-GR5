@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <style>
@@ -15,6 +16,12 @@
                 background: no-repeat;
                 margin: 0;
                 background-image: linear-gradient(#0F64C5, #4FC5C9);
+            }
+
+            label {
+                color: white !important;
+                font-size: 18pt;
+                font-weight: bold;
             }
 
             .navbar {
@@ -49,8 +56,18 @@
                 font-size: 20pt;
             }
 
+            .clicked {
+                color: yellow;
+                background-color: yellow;
+            }
+
+            .form-check-inline {
+                margin-left: 50px !important;
+                margin-right: 50px !important;
+            }
+
             #feed {
-                font-size: 28pt;
+                font-size: 29pt;
                 color: white;
                 font-family: Bodoni MT;
             }
@@ -62,9 +79,267 @@
                 overflow-y: scroll;
             }
 
-        </style>
-    </head>
+            input[type='radio'] { transform: scale(1.3); }
 
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            
+            let state = -1;
+            const initSavedState0 =
+                `<div class="row" style="height:100%;">
+                     <div class="col-sm-3" id="leftCol">
+                        <div class="row" id="mainRow">
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <img src="plusrect.png" class="mx-auto d-block img-rounded" id="addImg" alt="art1" style="width: 96%; height: 50%;" /> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9" id="rightCol">
+                        <div class="row d-flex align-items-center justify-content-center" id="bigImgRow" style="width:100%;height:90%;">
+                        </div>
+                        <div class="row" style="width:100%;height:10%;">
+                            <div class="col" style="height:100%;">
+                                <button type="button" class="btn btn-danger float-left" id="removeBtn" style="width:135px;height:75%;">Remove</button>
+                            </div>
+                            <div class="col" style="height:100%;">
+                                <button type="button" class="btn btn-success float-right" id="nextBtn" style="width:135px;height:75%;">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            let savedState0 = initSavedState0;
+
+            const initSavedState1 = 
+                `<div class="row" style="height:100%;">
+                    <div class="col-sm-3" id="leftCol">
+                        <div class="row" id="mainRow">
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <img src="plusrect.png" class="mx-auto d-block img-rounded" id="addImg" alt="art1" style="width: 96%; height: 50%;" /> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9" id="rightCol">
+                        <div class="row d-flex align-items-center justify-content-center" id="bigImgRow" style="width:100%;height:90%;">
+                            <form>
+                                <div class="form-group-lg"><br>
+                                    <label for="shortRequest">Briefly describe the feedback you want for this image</label>
+                                    <textarea class="form-control" id="shortRequest" rows="1"></textarea>
+                                </div>
+                                <br><br><br><br>
+                                <div class="form-group-lg"><br>
+                                    <label for="longRequest">Now, describe in detail what you want other artists to give you feedback on</label>
+                                    <textarea class="form-control" id="longRequest" rows="7"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row" style="width:100%;height:10%;">
+                            <div class="col" style="height:100%;">
+                                <button type="button" class="btn btn-danger float-left" id="removeBtn" style="width:135px;height:75%;">Remove</button>
+                            </div>
+                            <div class="col" style="height:100%;">
+                                <button type="button" class="btn btn-success float-right" id="nextBtn" style="width:135px;height:75%;">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            let savedState1 = initSavedState1;
+
+            const initSavedState2 = 
+                `<div class="row" style="height:100%;">
+                <div class="col-sm-3" id="leftCol">
+                    <div class="row" id="mainRow">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <img src="plusrect.png" class="mx-auto d-block img-rounded" id="addImg" alt="art1" style="width: 96%; height: 50%;" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9" id="rightCol">
+                    <div class="row d-flex align-items-center justify-content-center" id="bigImgRow" style="width:100%;height:90%;">
+                        <form>
+                            <div class="form-group">
+                                <label for="typeSelect">Select the art type for your image</label>
+                                <select class="form-control" id="typeSelect">
+                                    <option>Painting</option>
+                                    <option>Drawing</option>
+                                    <option>Sculpture</option>
+                                    <option>Ceramics</option>
+                                    <option>3D Modeling</option>
+                                    <option>Photography</option>
+                                    <option>Print</option>
+                                </select>
+                            </div>
+                            <br><br><br>
+                            <div class="form-group">
+                                <label for="tagsBox">Write in tags separated with commas that you feel describe the feedback you want and your image</label>
+                                <input type="email" class="form-control" id="tagsBox" placeholder="lighting, traditional art, etc.">
+                            </div>
+                            <br><br><br><br><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input center-block" type="radio" name="inlineRadioOptions" id="radioPublic" value="option1">
+                                <label class="form-check-label" for="radioPublic">Public</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input center-block" type="radio" name="inlineRadioOptions" id="radioPrivate" value="option2">
+                                <label class="form-check-label" for="radioPrivate">Private</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row" style="width:100%;height:10%;">
+                        <div class="col" style="height:100%;">
+                            <button type="button" class="btn btn-danger float-left" id="removeBtn" style="width:135px;height:75%;">Remove</button>
+                        </div>
+                        <div class="col" style="height:100%;">
+                            <button type="button" class="btn btn-success float-right" id="nextBtn" style="width:135px;height:75%;">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+            let savedState2 = initSavedState2;
+
+            let leftColContents = '';
+            let savedInShort = '';
+            let savedInLong = '';
+            let savedType = '0';
+            let savedTags = '';
+            let savedOpt = '';
+            let hasAdded = false;
+
+            let changeState = num => {
+
+                if (num === 0) {
+                    $('#pageContainer').html(savedState0);
+                    if (savedState0 === initSavedState0) {
+                        $('#nextBtn').prop('disabled', true);
+                    } else {
+                        hasAdded = true;
+                        $('#leftCol').html(leftColContents);
+                    }
+                    $('#removeBtn').prop('disabled', true);
+                } else if (num === 1) {
+                    savedState0 = $('#pageContainer').html();
+                    $('#pageContainer').html(savedState1);
+                    $('#shortRequest').text(savedInShort);
+                    $('#longRequest').text(savedInLong);
+                    $('#leftCol').html(leftColContents);
+                    $('#nextBtn').prop('disabled', false);
+                    $('#removeBtn').prop('disabled', false);
+                    $('#removeBtn').html('Back');
+                } else if (num === 2) {
+                    $('#shortRequest').text(savedInShort);
+                    $('#longRequest').text(savedInLong);
+                    if (savedInShort === '' || savedInLong === '') {
+                        alert('Please enter some text telling other artists what sort of feedback you would like on your image.');
+                        return;
+                    }
+                    savedState1 = $('#pageContainer').html();
+                    $('#pageContainer').html(savedState2);
+                    $('#removeBtn').html('Back');
+                    $('#nextBtn').html('Post');
+                    // $('#typeSelect').text(savedType);
+                    $('#typeSelect').val(savedType);
+                    $('.selectpicker').selectpicker('refresh');
+                    $('#tagsBox').text(savedTags);
+                    $('#leftCol').html(leftColContents);
+                    if (savedOpt === 'public') {
+                        $('#radioPublic').prop('checked', true);
+                    } else if (savedOpt === 'private') {
+                        $('#radioPrivate').prop('checked', true);
+                    }
+                }
+
+            }
+
+            $(document).ready(() => {
+                state = 0;
+                changeState(state);
+            });
+
+            $(document).on('click', '#addImg', e => {
+                
+                if (!hasAdded) {
+                    $('#mainRow').remove();
+                    $('#leftCol').append(
+                        `<div class="row" id="art4Row">
+                            <div class="col d-flex align-items-center justify-content-center\">
+                                <img src="art4.jpg" class="mx-auto d-block img-thumbnail" id="art4" alt="art4" style="width: 96%; height: 50%;" /> 
+                            </div>
+                        </div>
+                        <div class="row" id="mainRow">
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <img src="plusrect.png" class="mx-auto d-block img-rounded" id="addImg" alt="art1" style="width: 96%; height: 50%;" /> 
+                            </div>
+                        </div>`
+                    );
+                    hasAdded = true;
+                    $('#nextBtn').prop('disabled', false);
+                }
+
+            });
+
+            $(document).on('click', '#art4', e => {
+                if (state === 0) {
+                    if (!$('#art4').hasClass('clicked')) {
+                        $('#bigImgRow').append('<img src="art4.jpg" class="mx-auto d-block img-rounded" id="bigImg" alt="art4" style="width: 80%; height: 75%; border-style: solid;" />');
+                    }
+                    $('#art4').addClass('clicked');
+                    $('#removeBtn').prop('disabled', false);
+                }
+            });
+
+            $(document).on('click', '#removeBtn', e => {
+                if (state === 1) {
+                    console.log('saving input');
+                    savedInShort = $('#shortRequest').val();
+                    savedInLong = $('#longRequest').val();
+                    state = 0;
+                    changeState(state);
+                    return;
+                }
+
+                if ($('#removeBtn').text() === 'Remove') {
+                    $('#art4').removeClass('clicked');
+                    $('#art4Row').remove();
+                    $('#bigImg').remove();
+                    $('#removeBtn').prop('disabled', true);
+                    hasAdded = false;
+                }
+            });
+
+            $(document).on('click', '#nextBtn', e => {
+                if (state === 0) {
+                    state = 1;
+                    leftColContents = $('#leftCol').html();
+                } else if (state === 1) {
+                    savedInShort = $('#shortRequest').val();
+                    savedInLong = $('#longRequest').val();
+                    if (savedInShort === '' || savedInLong === '') {
+                        alert('Please enter some text telling other artists what sort of feedback you would like on your image.');
+                    } else {
+                        leftColContents = $('#leftCol').html();
+                        state = 2;
+                    }
+                } else if (state === 2) {
+                    savedType = $('#typeSelect').val();
+                    savedTags = $('#tagsBox').val();
+                    if ($('#radioPublic').prop('checked')) {
+                        savedOpt = 'public';
+                    } else if ($('#radioPrivate').prop('checked')) {
+                        savedOpt = 'private';
+                    } else {
+                        alert('Please select public or private access for your post.');
+                        return;
+                    }
+                }
+
+                changeState(state);
+            });
+
+        </script>
+    </head>
     <body>
         <nav class="navbar navbar-toggleable-xl bg-dark navbar-dark">
             <ul class="navbar-nav mr-auto">
@@ -94,42 +369,7 @@
                     <a class="nav-link" href="options"><i class="fas fa-ellipsis-v fa-2x"></i></a>
                 </li>
             </ul>
-        </nav>
-        
-        <div class="container-fluid">
-            <div class="row" style="height:100%;">
-                <div class="col-sm-3" id="leftCol">
-                    <div class="row" id="mainRow">
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <img src="art1.jpg" class="mx-auto d-block img-thumbnail" alt="art1" style="width: 96%; height: 54%;" /> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <img src="art2.jpg" class="mx-auto d-block img-thumbnail" alt="art2" style="width: 96%; height: 54%;" /> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <img src="art3.jpg" class="mx-auto d-block img-thumbnail" alt="art3" style="width: 96%; height: 54%;" /> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-9" id="rightCol">
-                    <div class="row d-flex align-items-center justify-content-center" style="width:100%;height:90%;">
-                        <img src="art4.jpg" class="mx-auto d-block img-rounded" alt="art4" style="width: 80%; height: 55%; border-style: solid;" />
-                    </div>
-                    <div class="row" style="width:100%;height:10%;">
-                        <div class="col">
-                            <button type="button" class="btn btn-danger float-left" style="width:135px;height:75%;">Remove</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-success float-right" style="width:135px;height:75%;">Next</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        </nav>    
+        <div class="container-fluid" id="pageContainer"></div>
     </body>
 </html>

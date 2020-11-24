@@ -106,8 +106,8 @@
     }
 
     .dropdown-menu.show {
-        margin-left: -200px;
-        width: 300px;
+        margin-left: -300px;
+        width: 350px;
         background-color: black;
         color: white;
         text-align: center;
@@ -134,6 +134,10 @@
         padding-left: 10px;
         padding-bottom: 10px;
         text-align: center;
+    }
+
+    #thumbnail {
+        max-width: 50px;
     }
 
     #user-icon {
@@ -267,7 +271,7 @@
             <li class="nav-item dropdown" id="notifications">
                 <a class="nav-link" href="notifications" id="navDropdown" data-toggle="dropdown"><i class="fas fa-bell fa-2x" data-count="1"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-text" href = "view_post_w_comments.html" id = "notificationMsg">Someone replied to your post!</a>
+                    <a class="dropdown-text" href = "view_post_w_comments.html" id = "notificationMsg"><img src="art4.jpg" class="img-fluid" id="thumbnail"> Someone replied to your post!</a>
                 </div>
             </li>
             <li class="nav-item" id="options">

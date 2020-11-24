@@ -146,9 +146,29 @@
 
 </style>
 
+<script>
+    var isNotified = false;
+
+    $(document).ready(function()
+    {
+        if (localStorage.notifyFlag) {
+            isNotified = true;
+            document.getElementById("notificationMsg").innerHTML = "Someone replied to your post!";
+        }
+    });
+
+    $(document).on('click', "#notificationMsg", function(evt)
+    {
+        if (true) {
+            window.location.href = 'view_post_w_comments.html';
+        }
+    });
+</script>
+
 
 <!DOCTYPE html>
 <html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -228,7 +248,7 @@
             <li class="nav-item dropdown" id="notifications">
                 <a class="nav-link" href="notifications" id="navDropdown" data-toggle="dropdown"><i class="fas fa-bell fa-2x"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-text" href"#">No Notifications</a>
+                    <a class="dropdown-text" href"#" id = "notificationMsg">No Notifications</a>
                 </div>
             </li>
             <li class="nav-item" id="options">
